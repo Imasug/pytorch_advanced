@@ -17,7 +17,7 @@ class RandomGaussianBlur(object):
 
     def __call__(self, img, anno_class_img):
         if random() < 0.5:
-            img = transforms.GaussianBlur(self.kernel_size, self.sigma)
+            img = transforms.GaussianBlur(self.kernel_size, self.sigma)(img)
         return img, anno_class_img
 
 
