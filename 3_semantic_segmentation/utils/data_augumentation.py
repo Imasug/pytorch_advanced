@@ -8,14 +8,16 @@ from torchvision import transforms
 from PIL import Image, ImageOps, ImageFilter
 import numpy as np
 
+
 class RandomGaussianBlur(object):
 
-    def __init__(self, kernel_size):
+    def __init__(self, kernel_size, sigma=(0.1, 2)):
         self.kernel_size = kernel_size
+        self.sigma = sigma
 
     def __call__(self, img, anno_class_img):
         if random() < 0.5:
-            img = transforms.GaussianBlur(self.kernel_size, 0)
+            img = transforms.GaussianBlur(self.kernel_size, self.sigma)
         return img, anno_class_img
 
 
