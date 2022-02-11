@@ -2,10 +2,21 @@
 # 注意　アノテーション画像はカラーパレット形式（インデックスカラー画像）となっている。
 
 # パッケージのimport
+from random import random
 import torch
 from torchvision import transforms
 from PIL import Image, ImageOps, ImageFilter
 import numpy as np
+
+class RandomGaussianBlur(object):
+
+    def __init__(self, kernel_size):
+        self.kernel_size = kernel_size
+
+    def __call__(self, img, anno_class_img):
+        if random() < 0.5:
+            img = transforms.GaussianBlur(self.kernel_size, 0)
+        return img, anno_class_img
 
 
 class Compose(object):
